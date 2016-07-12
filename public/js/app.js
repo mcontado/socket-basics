@@ -4,9 +4,12 @@ socket.on('connect', function () {
 	console.log('Connected to socket.io server!');
 });
 
+//fired everytime new message comes in
 socket.on('message', function (message) {
 	console.log('New messsage: ');
 	console.log(message.text);
+
+	jQuery('.messages').append('<p>' + message.text + '</p>');
 });
 
 // Handles submitting of new message 
