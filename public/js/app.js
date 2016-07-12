@@ -4,8 +4,17 @@ var socket = io();
 
 console.log(name + ' wants to join ' + room);
 
+//Update h1 tag
+jQuery('.room-title').text(room);
+
+//Fires when the client successfully connects to the server
 socket.on('connect', function () {
 	console.log('Connected to socket.io server!');
+
+	socket.emit('joinRoom', {
+		name: name,
+		room: room
+	});
 });
 
 //fired everytime new message comes in
