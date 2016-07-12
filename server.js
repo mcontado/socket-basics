@@ -1,4 +1,5 @@
 var PORT = process.env.PORT || 3000;
+var moment = require('moment');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);  //http server
@@ -15,13 +16,15 @@ io.on('connection', function (socket) {
 
 		// io.emit --> sends to every single person including the sender
 		//socket.broadcast.emit('message', message);  // sends to everyone but the sender
+		message.timestamp = moment().valueOf();
 		io.emit('message', message); 
 	});
 
 	//emit function takes 2 args (event-name, data-to-send)
 	//when the user successfully connects to the chat application
 	socket.emit('message', {
-		text: 'Welcome to the chat application!'
+		text: 'Welcome to the chat application!',
+		timestamp: moment().valueOf()
 	});
 });
 
