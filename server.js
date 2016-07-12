@@ -23,6 +23,7 @@ io.on('connection', function (socket) {
 	//emit function takes 2 args (event-name, data-to-send)
 	//when the user successfully connects to the chat application
 	socket.emit('message', {
+		name: 'System',
 		text: 'Welcome to the chat application!',
 		timestamp: moment().valueOf()
 	});
